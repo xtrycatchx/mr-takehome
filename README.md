@@ -1,6 +1,6 @@
 # Take Home
 
-My take-home assignment from a company a applied
+Yo
 
 ## Getting Started
 
@@ -14,7 +14,7 @@ You need at least Docker or best if you have setup Kubernetes. You can check my 
 
 A step by step to run this stuff
 
-Build and Run Redis
+#### Build and Run Redis
 
 ```
 cd redis-cache-image
@@ -22,64 +22,36 @@ cd redis-cache-image
 ./docker-run.sh
 ```
 
-And repeat
-
+#### Run Cache Service
+`TODO Dockerized` 
 ```
-until finished
+cd number-cache-service
+./run-locally.sh
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
+#### Run Business Service
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
+`TODO Dockerized` 
 ```
-Give an example
+cd number-frontend
+npm install && npm start
 ```
 
-### And coding style tests
+#### Run FrontEnd
 
-Explain what these tests test and why
-
+`TODO write code` 
 ```
-Give an example
+cd number-frontend
+npm install && npm start
 ```
 
-## Deployment
+## Use the App
 
-Add additional notes about how to deploy this on a live system
+Open a browser and navigate to http://localhost:3000
+Once landed, you will see a randomized numbers which are clickables.
 
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Clicking on a number will simulate `Buying of a Number`. It will hit backend and eventually MySQL and flag that record so it won't be served to Redis for randomization
+* Clicking on `Simulate Fetch Randomizer` will ask Redis for another set of random numbers that can be bought. These numbers are considered blocked and won't be served elsewhere.
+* Clicking on `Simulate Logout or Timeout` will push back the remaining numbers not bought back to Redis, to be served again to another customer.

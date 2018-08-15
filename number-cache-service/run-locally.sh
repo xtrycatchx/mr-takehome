@@ -1,0 +1,1 @@
+sh -ac ' . ./env.list; rm -rf lib && rm -rf node_modules/ && npm install && npm start'

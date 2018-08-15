@@ -2,6 +2,8 @@
 
 Yo
 
+![alt text](https://raw.githubusercontent.com/xtrycatchx/mr-takehome/master/overview.png)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for demo purposes. 

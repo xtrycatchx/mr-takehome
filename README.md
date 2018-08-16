@@ -1,7 +1,5 @@
 # Take Home
 
-Yo
-
 ![alt text](https://raw.githubusercontent.com/xtrycatchx/mr-takehome/master/overview.png)
 
 ## Getting Started
@@ -16,6 +14,21 @@ You need at least Docker or best if you have setup Kubernetes. You can check my 
 
 A step by step to run this stuff
 
+#### MySQL
+Assuming you already have mysql instance running, you may need to create schema and table
+```SQL
+CREATE SCHEMA `numbers_db`
+```
+```SQL
+CREATE  TABLE `numbers_db`.`tbl_number` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `number` VARCHAR(45) NULL ,
+  `status` VARCHAR(45) NULL ,
+  `added` DATETIME DEFAULT CURRENT_TIMESTAMP ,
+  `lastUsed` DATETIME NULL ,
+  PRIMARY KEY (`id`) );
+```
+
 #### Build and Run Redis
 
 ```
@@ -25,7 +38,17 @@ cd redis-cache-image
 ```
 
 #### Run Cache Service
-`TODO Dockerized` 
+
+
+Setup first the env variables accordingly in file `number-cache-service/env.list`
+
+| key   |     description 
+|----------|:-------------|
+| SERVER_PORT | port that this service listens to|
+| REDIS_CACHE_KEY | key for our transient records  |
+
+You can start the service by executing the following
+
 ```
 cd number-cache-service
 ./run-locally.sh
@@ -33,9 +56,20 @@ cd number-cache-service
 
 End with an example of getting some data out of the system or using it for a little demo
 
-#### Run Business Service
+#### Run Buy Service
 
-`TODO Dockerized` 
+Setup first the env variables accordingly in file `number-buy-service/env.list`
+
+| key   |     description 
+|----------|:-------------|
+| SERVER_PORT | port that this service listens to|
+| MYSQL_HOST | mysql host / ip address  |
+| MYSQL_USER | mysql user |
+| MYSQL_PASSWORD | mysql password |
+| MYSQL_DB | default schema |
+
+
+You can start the service by executing the following
 ```
 cd number-frontend
 npm install && npm start
@@ -43,7 +77,7 @@ npm install && npm start
 
 #### Run FrontEnd
 
-`TODO write code` 
+You can start the front end by executing the following
 ```
 cd number-frontend
 npm install && npm start

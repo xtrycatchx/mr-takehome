@@ -18,8 +18,6 @@ There are 6 components in this architecture
 
 These instructions will get you a copy of the project, have it up and running on your local machine for demo purposes. 
 
-
-
 ### Prerequisites
 
 You need at least Docker or best if you have setup Kubernetes. You can check my short blog post for a quick 1 cluster K8s setup : https://www.not.expert/blog/local-development-with-kubernetes
@@ -66,7 +64,6 @@ cd redis-cache-image
 
 #### Run Cache Service
 
-
 Setup first the env variables accordingly in file `number-cache-service/env.list`
 
 | key   |     description 
@@ -94,12 +91,37 @@ Setup first the env variables accordingly in file `number-buy-service/env.list`
 | MYSQL_USER | mysql user |
 | MYSQL_PASSWORD | mysql password |
 | MYSQL_DB | default schema |
+| MYSQL_CONNECTION_LIMIT | number of conneciton limit. leave as is.|
+| MYSQL_DEBUG | you can switch to true or false depending on your need |
+| REDIS_AUTH | Password of the redis instance so this service can publish events |
 
 
 You can start the service by executing the following
 ```
-cd number-frontend
-npm install && npm start
+cd number-buy-service
+./run-locally.sh
+```
+
+#### Run History Service
+
+Setup first the env variables accordingly in file `number-history-service/env.list`
+
+| key   |     description 
+|----------|:-------------|
+| SERVER_PORT | port that this service listens to|
+| MYSQL_HOST | mysql host / ip address  |
+| MYSQL_USER | mysql user |
+| MYSQL_PASSWORD | mysql password |
+| MYSQL_DB | default schema |
+| MYSQL_CONNECTION_LIMIT | number of conneciton limit. leave as is.|
+| MYSQL_DEBUG | you can switch to true or false depending on your need |
+| REDIS_AUTH | Password of the redis instance so this service can subscribe to events |
+
+
+You can start the service by executing the following
+```
+cd number-history-service
+./run-locally.sh
 ```
 
 #### Run FrontEnd
@@ -118,3 +140,4 @@ Once landed, you will see a randomized numbers which are clickables.
 * Clicking on a number will simulate `Buying of a Number`. It will hit backend and eventually MySQL and flag that record so it won't be served to Redis for randomization
 * Clicking on `Simulate Fetch Randomizer` will ask Redis for another set of random numbers that can be bought. These numbers are considered blocked and won't be served elsewhere.
 * Clicking on `Simulate Logout or Timeout` will push back the remaining numbers not bought back to Redis, to be served again to another customer.
+

@@ -9,5 +9,8 @@ module.exports = {
     connectionLimit: process.env.MYSQL_CONNECTION_LIMIT,
     debug: process.env.MYSQL_DEBUG,
     multipleStatements: true
+  },
+  redisConfig: {
+    auth: process.env.REDIS_AUTH
   }
 }

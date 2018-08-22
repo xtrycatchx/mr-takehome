@@ -19,13 +19,13 @@ export class DataAccess {
     const pool = this._pool()
     return this._execute(pool)
       (`SELECT number FROM tbl_number WHERE status not in ("CONSUMED","QUARANTINED")`)
-      ().then(results => {
-        if (results && results.length > 0) {
-          return Promise.resolve(results)
-        } else {
-          return Promise.resolve({})
-        }
-      })
+   ().then(results => {
+      if (results && results.length > 0) {
+        return Promise.resolve(results)
+      } else {
+        return Promise.resolve({})
+      }
+    })
   }
 
   _pool() {

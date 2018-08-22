@@ -31,12 +31,15 @@ CREATE  TABLE `numbers_db`.`tbl_number` (
 ```
 Create Transaction History table
 ```SQL
-CREATE  TABLE `numbers_db`.`tbl_history` (
-  `id` INT NOT NULL AUTO_INCREMENT ,
-  `time_stamp` DATETIME DEFAULT CURRENT_TIMESTAMP ,
-  `number_id` INT NOT NULL ,
-  `transaction_type` VARCHAR(45) NULL ,
-  PRIMARY KEY (`id`) );
+
+CREATE TABLE `tbl_history` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `time_stamp` datetime DEFAULT CURRENT_TIMESTAMP,
+  `number_id` varchar(45) NOT NULL,
+  `transaction_type` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
 ```
 
 #### Build and Run Redis

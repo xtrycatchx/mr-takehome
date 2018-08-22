@@ -19,6 +19,7 @@ Assuming you already have mysql instance running, you may need to create schema 
 ```SQL
 CREATE SCHEMA `numbers_db`
 ```
+Create the numbers table
 ```SQL
 CREATE  TABLE `numbers_db`.`tbl_number` (
   `id` INT NOT NULL AUTO_INCREMENT ,
@@ -26,6 +27,15 @@ CREATE  TABLE `numbers_db`.`tbl_number` (
   `status` VARCHAR(45) NULL ,
   `added` DATETIME DEFAULT CURRENT_TIMESTAMP ,
   `lastUsed` DATETIME NULL ,
+  PRIMARY KEY (`id`) );
+```
+Create Transaction History table
+```SQL
+CREATE  TABLE `numbers_db`.`tbl_history` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `time_stamp` DATETIME DEFAULT CURRENT_TIMESTAMP ,
+  `number_id` INT NOT NULL ,
+  `transaction_type` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) );
 ```
 

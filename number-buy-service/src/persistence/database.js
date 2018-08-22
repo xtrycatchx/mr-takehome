@@ -1,10 +1,10 @@
 import mysql from 'mysql'
 
 export class Database {
-  constructor({mysqlConfig}) {
+  constructor({ mysqlConfig }) {
     console.log('instantiating DB client using:', mysqlConfig)
     this.pool = this.connect(mysqlConfig)
-    if(!this.pool) {
+    if (!this.pool) {
       console.error('Problem getting a connection:', pool)
     }
   }

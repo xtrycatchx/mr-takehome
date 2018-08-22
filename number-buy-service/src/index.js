@@ -30,8 +30,8 @@ app.listen(serverPort)
 
 const dataAccess = container.resolve('dataAccess')
 
-for(let x =0; x < 100; x++) {
-  const number =  Math.floor(Math.random() * (6599999999 - 6590000000) + 6590000000)
+for (let x = 0; x < 100; x++) {
+  const number = Math.floor(Math.random() * (6599999999 - 6590000000) + 6590000000)
   const status = 'NEW'
   dataAccess.add({ number, status })
 }

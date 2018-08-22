@@ -2,12 +2,12 @@ import http from 'http'
 
 exports.addToCache = payload => new Promise((resolve, reject) => {
     const options = {
-      host: `localhost`,
-      port: 8882,
-      headers: { 'Content-Type': 'application/json' },
-      path: '/api/numbers',
-      method: 'POST'
-  }
+        host: `localhost`,
+        port: 8882,
+        headers: { 'Content-Type': 'application/json' },
+        path: '/api/numbers',
+        method: 'POST'
+    }
 
     const req = http.request(options, res => {
         let body = [];

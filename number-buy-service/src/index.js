@@ -29,10 +29,12 @@ app.use((req, res, next) => {
 app.listen(serverPort)
 
 const dataAccess = container.resolve('dataAccess')
+const messaging = container.resolve('messaging')
 
 for (let x = 0; x < 100; x++) {
   const number = Math.floor(Math.random() * (6599999999 - 6590000000) + 6590000000)
   const status = 'NEW'
+  messaging.publish('transaction-history-channel', { number, transaction : status } )
   dataAccess.add({ number, status })
 }
 

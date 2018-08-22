@@ -4,14 +4,15 @@
 
 # Overview
 There are 6 components in this architecture
-| component     |   purpose    | dependency |
-|---------------|:-------------|------------|
-| cache-service | Exposes APIs for fetching globally unique random numbers from cache. This also processes unused numbers by putting it back to cache | redis for caching |
-| buy-service | Processes transaction when someone buys a number | mysql to update the number, redis to publish event to listeners |
-| history-service| Exposes an API to get history of a number. Listens to events from redis to update the number in db.| redis to subscribe events |
-|redis | Caches temporary data. Serves a messaging hub between buy-service and history-service| |
-| mysql | Stores numbers and its status. Stores historical transactions concerning numbers | |
-|frontend| Dummy client to display globally random numbers available. Allows end-user to buy a number. SImulates a logout/timeout which will return the random numbers back to cache-service.| cache-service for available numbers, buy-service for buying a number/s|
+
+| component      |   purpose                                                                                                                                                                         |        dependency 
+|----------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------
+| cache-service  | Exposes APIs for fetching globally unique random numbers from cache. This also processes unused numbers by putting it back to cache                                               | redis for caching 
+| buy-service    | Processes transaction when someone buys a number                                                                                                                                  | mysql to update the number, redis to publish event to listeners
+| history-service| Exposes an API to get history of a number. Listens to events from redis to update the number in db.                                                                               | mysql to store history, redis to subscribe events
+| redis          | Caches temporary data. Serves a messaging hub between buy-service and history-service                                                                                             |
+| mysql          | Stores numbers and its status. Stores historical transactions concerning numbers                                                                                                  |
+| frontend       | Dummy client to display globally random numbers available. Allows end-user to buy a number. Simulates a logout/timeout which will return the random numbers back to cache-service.| cache-service for available numbers, buy-service for buying a number/s
 
 ## Getting Started
 

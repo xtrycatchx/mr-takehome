@@ -8,7 +8,15 @@ export class Messaging {
   }
 
   publish(channel = 'transaction-history-channel', message) {
-    this.pub.publish(channel, JSON.stringify({ message }))
+    return new Promise((resolve,reject) => {
+      try {
+        this.pub.publish(channel, JSON.stringify(message))
+        resolve()
+      } catch(err) {
+        reject(err)
+      }
+    })
+    
   }
 
   listener(message) {
